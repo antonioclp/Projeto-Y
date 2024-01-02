@@ -15,6 +15,7 @@ export default function Register() {
     age: 0,
     birthday: "",
   });
+  const [serverStatus, setStatus] = useState(0);
 
   useEffect(() => {
     setDate(getDate);
@@ -38,8 +39,14 @@ export default function Register() {
     }));
   };
 
-  const onClickFunc = () => {
-    postUser(userInfo);
+  const onClickFunc = async () => {
+    const response = await postUser(userInfo);
+
+    if (response === 409) {
+      return setStatus(409);
+    } else {
+      setStatus(200);
+    }
   };
 
   return (
@@ -52,6 +59,11 @@ export default function Register() {
         <div>
           <label htmlFor="inputEmail">Email</label>
           <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
+        </div>
+        <div>
+          {
+            serverStatus === 409 ? <span>Email já existe.</span> : null
+          }
         </div>
         <div>
           <label htmlFor="inputPassword">Password</label>
