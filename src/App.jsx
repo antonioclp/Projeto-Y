@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 // Styles
 import "./styles/Reset.css";
@@ -12,6 +13,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<div>ola</div>} />
       </Routes>
     </BrowserRouter>
   );
