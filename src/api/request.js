@@ -34,6 +34,5 @@ export const getUserByEmail = async (userEmail, userPassword) => {
     },
   });
 
-  const data = await response.json();
-  return data;
+  return response;
 };
