@@ -1,7 +1,7 @@
 import getDate from "../utils/getDate";
 
 export const postUser = async (userInfo) => {
-  const response = await fetch("http://localhost/8080/users", {
+  const response = await fetch("http://localhost:8080/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

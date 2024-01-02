@@ -62,7 +62,7 @@ export default function Register() {
           <input onChange={onChangeFunc} type="date" id="inputDate" min="1925-01-01" max={date} name="birthDay" />
         </div>
         <div>
-          <button onClick={onClickFunc} >Confirm</button>
+          <button onClick={onClickFunc} type="button" >Confirm</button>
         </div>
       </form>
     </main>
