@@ -1,4 +1,4 @@
-import getDate from "../utils/GetDate";
+import getDate from "../utils/getDate";
 
 export const postUser = async (userInfo) => {
   const response = await fetch("http://localhost/8080/users", {
