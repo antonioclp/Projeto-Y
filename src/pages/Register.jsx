@@ -29,7 +29,7 @@ export default function Register() {
     const { name, value } = target;
     let errorMessage = "";
 
-    if (name === "birthDay") {
+    if (name === "birthday") {
       setInfo((prev) => ({
         ...prev,
         birthday: value,
