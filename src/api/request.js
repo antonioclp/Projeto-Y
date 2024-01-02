@@ -16,6 +16,10 @@ export const postUser = async (userInfo) => {
     }),
   });
 
+  if (response.status === 409) {
+    return response.status;
+  }
+
   const data = await response.json();
   return data;
 };
