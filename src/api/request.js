@@ -1,18 +1,19 @@
 import getDate from "../utils/getDate";
 
 export const postUser = async (userInfo) => {
-  const response = await fetch("http://localhost:8080/users", {
+  const response = await fetch("http://localhost:8080/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name: userInfo.name,
+      username: userInfo.name,
       age: userInfo.age,
       email: userInfo.email,
       password: userInfo.password,
-      creationDate: getDate(),
-      creationTime: new Date().toLocaleTimeString(),
+      createdDate: getDate(),
+      createdTime: new Date().toLocaleTimeString().slice(0, -6),
+      role: userInfo.role
     }),
   });
 

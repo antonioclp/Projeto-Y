@@ -15,6 +15,7 @@ export default function Register() {
     password: "",
     age: 0,
     birthday: "",
+    role: "USER"
   });
 
   const [serverStatus, setStatus] = useState(0);
