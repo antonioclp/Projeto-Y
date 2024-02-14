@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getUserByEmail } from "../api/request";
+import { useNavigate } from "react-router-dom";
 
 // Style
 import "../styles/pages/Login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+  
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -47,8 +50,8 @@ export default function Login() {
       }));
     } else {
       const fetch = await response.json();
-      console.log(fetch);
       localStorage.setItem("dXNlcg", JSON.stringify(fetch.data));
+      return navigate("home");
     }
   };
 
@@ -78,12 +81,13 @@ export default function Login() {
           />
           {errorMessages.password && <span>{errorMessages.password}</span>}
         </div>
-        <div>
-          <a href="/home" onClick={onClickFunc}>
-            Login
-          </a>
-          <span>Não tem uma conta? </span>
-          <a href="/register">Registrar</a>
+        <div className="login-form--navegation">
+          <span>
+            <button onClick={onClickFunc}>
+              Login
+            </button>
+          </span>
+          <span>Don't have an account? <a href="/register">Register</a></span>
         </div>
       </form>
     </main>

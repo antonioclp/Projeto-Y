@@ -21,8 +21,8 @@
 }
 
 .m-login--form input,
-.m-login--form a {
-  width: 100%;
+.m-login--form span {
+  width: 105%;
   padding: 5px;
   margin-bottom: 10px;
 }
@@ -43,6 +43,8 @@
   outline: none;
 }
 
-.m-login--form a {
+.login-form--navegation {
+  width: 100%;
   text-align: center;
 }
+
