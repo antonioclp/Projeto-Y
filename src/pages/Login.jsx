@@ -7,16 +7,15 @@ import "../styles/pages/Login.css";
 export default function Login() {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [errorMessages, setErrorMessages] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
-  useEffect(() => {
-  }, [user]);
+  useEffect(() => {}, [user]);
 
   const onChangeFunc = (event) => {
     const { target } = event;
@@ -24,12 +23,12 @@ export default function Login() {
 
     setUser((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     setErrorMessages((prev) => ({
       ...prev,
-      [name]: ""
+      [name]: "",
     }));
   };
 
@@ -39,15 +38,13 @@ export default function Login() {
     if (response.status === 404) {
       setErrorMessages((prev) => ({
         ...prev,
-        email: "Email não existente"
+        email: "Email não existente",
       }));
-
     } else if (response.status === 409) {
       setErrorMessages((prev) => ({
         ...prev,
-        password: "Senha incorreta"
+        password: "Senha incorreta",
       }));
-
     } else {
       const fetch = await response.json();
       console.log(fetch);
@@ -58,23 +55,35 @@ export default function Login() {
   return (
     <main className="m-login">
       <form method="submit" className="m-login--form">
-        <div>
-          <label htmlFor="inputEmail">Email</label>
-          <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
-          {
-            errorMessages.email && <span>{errorMessages.email}</span>
-          }
+        <div className="m-login--title">
+          <h2>Login</h2>
         </div>
         <div>
-          <label htmlFor="inputPassword">Password</label>
-          <input onChange={onChangeFunc} type="password" id="inputPassword" name="password" />
-          {
-            errorMessages.password && <span>{errorMessages.password}</span>
-          }
+          <input
+            onChange={onChangeFunc}
+            type="text"
+            id="inputEmail"
+            name="email"
+            placeholder="Email"
+          />
+          {errorMessages.email && <span>{errorMessages.email}</span>}
         </div>
         <div>
-          <a href="/home" onClick={onClickFunc} >Login</a>
-          <span>Não tem uma conta? </span><a href="/register" >Registrar</a>
+          <input
+            onChange={onChangeFunc}
+            type="password"
+            id="inputPassword"
+            name="password"
+            placeholder="Password"
+          />
+          {errorMessages.password && <span>{errorMessages.password}</span>}
+        </div>
+        <div>
+          <a href="/home" onClick={onClickFunc}>
+            Login
+          </a>
+          <span>Não tem uma conta? </span>
+          <a href="/register">Registrar</a>
         </div>
       </form>
     </main>

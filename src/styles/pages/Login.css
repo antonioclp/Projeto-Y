@@ -27,6 +27,22 @@
   margin-bottom: 10px;
 }
 
+.m-login--form input {
+  background-color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 14px;
+  font-size: 14px;
+  box-shadow: 0.5px 0.5px 2.5px 0.5px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease-out;
+  outline: none;
+}
+
+.m-login--form input:focus {
+  box-shadow: 0.5px 0.5px 2.5px 0.5px rgb(0, 0, 0, 0.9);
+  outline: none;
+}
+
 .m-login--form a {
   text-align: center;
 }
