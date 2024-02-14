@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getUserByEmail } from "../api/request";
 
+// Style
+import "../styles/pages/Login.css";
+
 export default function Login() {
   const [user, setUser] = useState({
     email: "",
@@ -53,8 +56,8 @@ export default function Login() {
   };
 
   return (
-    <main>
-      <form>
+    <main className="m-login">
+      <form method="submit" className="m-login--form">
         <div>
           <label htmlFor="inputEmail">Email</label>
           <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
@@ -70,8 +73,8 @@ export default function Login() {
           }
         </div>
         <div>
-          <a onClick={onClickFunc} >Login</a>
-          <a href="/register" >Register</a>
+          <a href="/home" onClick={onClickFunc} >Login</a>
+          <span>Não tem uma conta? </span><a href="/register" >Registrar</a>
         </div>
       </form>
     </main>
