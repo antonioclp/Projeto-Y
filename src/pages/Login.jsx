@@ -58,8 +58,8 @@ export default function Login() {
   return (
     <main className="m-login">
       <form method="submit" className="m-login--form">
-        <div className="m-login--title">
-          <h2>Login</h2>
+        <div className="m-login--logo">
+          <img src="src/imgs/y-icon.png" alt="y" />
         </div>
         <div>
           <input

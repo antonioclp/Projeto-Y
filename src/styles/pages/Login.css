@@ -1,5 +1,5 @@
 .m-login {
-  height: 99vh;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -10,7 +10,19 @@
   align-items: center;
   padding: 2vw;
   max-width: 15vw;
-  margin-top: 10%;
+  margin: 5%;
+  background-color: rgb(115, 81, 194, 0.4);
+  border: 1px solid rgba(142, 142, 142, 0.6);
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 1px rgba(25, 25, 25, 0.8);
+  padding: 45px;
+}
+
+.m-login--logo {
+  & img {
+    width: 60px;
+    border-radius: 4px;
+  }
 }
 
 .m-login--form div {
@@ -50,17 +62,17 @@
 
 .login-form--navegation {
   & button {
-    background: none;
+    background: rgb(247, 247, 247);
     border: 1px solid black;
-    border-radius: 2px;
+    border-radius: 20px;
     padding: 1vw;
     width: 10vw;
     font-size: 1vw;
-    transition: box-shadow 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
   }
 
   & button:hover {
     cursor: pointer;
-    box-shadow: 2px 2px 1px 1px black;
+    background-color: rgb(239, 239, 239);
   }
 }
