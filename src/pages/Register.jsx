@@ -133,7 +133,7 @@ export default function Register() {
             />
           </div>
           {errorMessages && <span>{errorMessages.birthday}</span>}
-          <div>
+          <div className="m-register-form--button">
             <button onClick={onClickFunc} type="button">
               Continue
             </button>
