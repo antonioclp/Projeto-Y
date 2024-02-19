@@ -82,6 +82,9 @@ export default function Register() {
     <main>
       <form>
         <div>
+          <h2>Register</h2>
+        </div>
+        <div>
           <label htmlFor="inputName">Username</label>
           <input onChange={onChangeFunc} type="text" id="inputName" name="name" />
           {
@@ -115,7 +118,7 @@ export default function Register() {
           }
         </div>
         <div>
-          <button onClick={onClickFunc} type="button" >Confirm</button>
+          <button onClick={onClickFunc} type="button" >Continue</button>
         </div>
       </form>
     </main>
