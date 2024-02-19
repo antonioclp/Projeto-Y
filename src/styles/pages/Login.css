@@ -48,3 +48,19 @@
   text-align: center;
 }
 
+.login-form--navegation {
+  & button {
+    background: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 1vw;
+    width: 10vw;
+    font-size: 1vw;
+    transition: box-shadow 0.2s ease-out;
+  }
+
+  & button:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 1px 1px black;
+  }
+}
