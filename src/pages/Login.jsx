@@ -59,7 +59,7 @@ export default function Login() {
     <main className="m-login">
       <form method="submit" className="m-login--form">
         <div className="m-login--logo">
-          <img src="src/imgs/y-icon.png" alt="y" />
+          <img src="src/imgs/y-logo.png" alt="y" />
         </div>
         <div>
           <input
