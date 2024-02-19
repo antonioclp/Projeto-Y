@@ -7,6 +7,9 @@ import { validateEmail, validatePassword } from "../utils/validation";
 // Api
 import { postUser } from "../api/request";
 
+// Style
+import "../styles/pages/Register.css";
+
 export default function Register() {
   const [date, setDate] = useState();
   const [userInfo, setInfo] = useState({
@@ -86,7 +89,7 @@ export default function Register() {
         <div className="m-register-form--title">
           <h2>Register</h2>
         </div>
-        <div className="m-register-form--inputs"> 
+        <div className="m-register-form--inputs">
           <div>
             <label htmlFor="inputName">Username</label>
             <input
@@ -95,8 +98,8 @@ export default function Register() {
               id="inputName"
               name="name"
             />
-            {errorMessages && <span>{errorMessages.name}</span>}
           </div>
+          {errorMessages && <span>{errorMessages.name}</span>}
           <div>
             <label htmlFor="inputEmail">Email</label>
             <input
@@ -105,11 +108,9 @@ export default function Register() {
               id="inputEmail"
               name="email"
             />
-            {errorMessages && <span>{errorMessages.email}</span>}
           </div>
-          <div>
-            {serverStatus === 409 ? <span>Email já existe.</span> : null}
-          </div>
+          {errorMessages && <span>{errorMessages.email}</span>}
+          {serverStatus === 409 ? <span>Email já existe.</span> : null}
           <div>
             <label htmlFor="inputPassword">Password</label>
             <input
@@ -118,8 +119,8 @@ export default function Register() {
               id="inputPassword"
               name="password"
             />
-            {errorMessages && <span>{errorMessages.password}</span>}
           </div>
+          {errorMessages && <span>{errorMessages.password}</span>}
           <div>
             <label htmlFor="inputDate">Birthday</label>
             <input
@@ -130,8 +131,8 @@ export default function Register() {
               max={date}
               name="birthday"
             />
-            {errorMessages && <span>{errorMessages.birthday}</span>}
           </div>
+          {errorMessages && <span>{errorMessages.birthday}</span>}
           <div>
             <button onClick={onClickFunc} type="button">
               Continue
