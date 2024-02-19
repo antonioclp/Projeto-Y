@@ -15,7 +15,7 @@ export default function Register() {
     password: "",
     age: 0,
     birthday: "",
-    role: "USER"
+    role: "USER",
   });
 
   const [serverStatus, setStatus] = useState(0);
@@ -36,7 +36,6 @@ export default function Register() {
         birthday: value,
         age: Number(date.slice(0, 4)) - Number(value.slice(0, 4)),
       }));
-
     } else {
       setInfo((prev) => ({
         ...prev,
@@ -55,7 +54,10 @@ export default function Register() {
         }
 
         if (name === "birthday") {
-          if (Number(value.slice(0, 4)) < 1925 || Number(value.slice(0, 4)) > Number(date.slice(0, 4))) {
+          if (
+            Number(value.slice(0, 4)) < 1925 ||
+            Number(value.slice(0, 4)) > Number(date.slice(0, 4))
+          ) {
             errorMessage = "Insira uma data válida.";
           }
         }
@@ -79,46 +81,62 @@ export default function Register() {
   };
 
   return (
-    <main>
-      <form>
-        <div>
+    <main className="m-register">
+      <form className="m-register-form">
+        <div className="m-register-form--title">
           <h2>Register</h2>
         </div>
-        <div>
-          <label htmlFor="inputName">Username</label>
-          <input onChange={onChangeFunc} type="text" id="inputName" name="name" />
-          {
-            errorMessages && <span>{errorMessages.name}</span>
-          }
-        </div>
-        <div>
-          <label htmlFor="inputEmail">Email</label>
-          <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
-          {
-            errorMessages && <span>{errorMessages.email}</span>
-          }
-        </div>
-        <div>
-          {
-            serverStatus === 409 ? <span>Email já existe.</span> : null
-          }
-        </div>
-        <div>
-          <label htmlFor="inputPassword">Password</label>
-          <input onChange={onChangeFunc} type="password" id="inputPassword" name="password" />
-          {
-            errorMessages && <span>{errorMessages.password}</span>
-          }
-        </div>
-        <div>
-          <label htmlFor="inputDate">Birthday</label>
-          <input onChange={onChangeFunc} type="date" id="inputDate" min="1925-01-01" max={date} name="birthday" />
-          {
-            errorMessages && <span>{errorMessages.birthday}</span>
-          }
-        </div>
-        <div>
-          <button onClick={onClickFunc} type="button" >Continue</button>
+        <div className="m-register-form--inputs"> 
+          <div>
+            <label htmlFor="inputName">Username</label>
+            <input
+              onChange={onChangeFunc}
+              type="text"
+              id="inputName"
+              name="name"
+            />
+            {errorMessages && <span>{errorMessages.name}</span>}
+          </div>
+          <div>
+            <label htmlFor="inputEmail">Email</label>
+            <input
+              onChange={onChangeFunc}
+              type="text"
+              id="inputEmail"
+              name="email"
+            />
+            {errorMessages && <span>{errorMessages.email}</span>}
+          </div>
+          <div>
+            {serverStatus === 409 ? <span>Email já existe.</span> : null}
+          </div>
+          <div>
+            <label htmlFor="inputPassword">Password</label>
+            <input
+              onChange={onChangeFunc}
+              type="password"
+              id="inputPassword"
+              name="password"
+            />
+            {errorMessages && <span>{errorMessages.password}</span>}
+          </div>
+          <div>
+            <label htmlFor="inputDate">Birthday</label>
+            <input
+              onChange={onChangeFunc}
+              type="date"
+              id="inputDate"
+              min="1925-01-01"
+              max={date}
+              name="birthday"
+            />
+            {errorMessages && <span>{errorMessages.birthday}</span>}
+          </div>
+          <div>
+            <button onClick={onClickFunc} type="button">
+              Continue
+            </button>
+          </div>
         </div>
       </form>
     </main>
