@@ -87,7 +87,7 @@ export default function Login() {
               Login
             </button>
           </span>
-          <span>Don't have an account? <a href="/register">Register</a></span>
+          <span>{"Don't have an account? "} <a href="/register">Register</a></span>
         </div>
       </form>
     </main>
