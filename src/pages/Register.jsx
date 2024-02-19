@@ -46,14 +46,14 @@ export default function Register() {
       }));
 
       if (value.trim().length < 2) {
-        errorMessage = "Mínimo de 2 caracteres";
+        errorMessage = "Min 2 characters";
       } else {
         if (name === "email" && !validateEmail(value)) {
-          errorMessage = "Email inválido";
+          errorMessage = "Invalid Email";
         }
 
         if (name === "password" && !validatePassword(value)) {
-          errorMessage = "A senha deve conter pelo menos um caractere especial";
+          errorMessage = "Password must contain at least one especial character";
         }
 
         if (name === "birthday") {
@@ -61,7 +61,7 @@ export default function Register() {
             Number(value.slice(0, 4)) < 1925 ||
             Number(value.slice(0, 4)) > Number(date.slice(0, 4))
           ) {
-            errorMessage = "Insira uma data válida.";
+            errorMessage = "Insert a valid date.";
           }
         }
       }
@@ -91,38 +91,38 @@ export default function Register() {
         </div>
         <div className="m-register-form--inputs">
           <div>
-            <label htmlFor="inputName">Username</label>
             <input
               onChange={onChangeFunc}
               type="text"
               id="inputName"
               name="name"
+              placeholder="Username"
             />
           </div>
           {errorMessages && <span>{errorMessages.name}</span>}
           <div>
-            <label htmlFor="inputEmail">Email</label>
             <input
               onChange={onChangeFunc}
               type="text"
               id="inputEmail"
               name="email"
+              placeholder="Email"
             />
           </div>
           {errorMessages && <span>{errorMessages.email}</span>}
-          {serverStatus === 409 ? <span>Email já existe.</span> : null}
+          {serverStatus === 409 ? <span>Email already exists.</span> : null}
           <div>
-            <label htmlFor="inputPassword">Password</label>
             <input
               onChange={onChangeFunc}
               type="password"
               id="inputPassword"
               name="password"
+              placeholder="Password"
             />
           </div>
           {errorMessages && <span>{errorMessages.password}</span>}
           <div>
-            <label htmlFor="inputDate">Birthday</label>
+            <span>Birthday</span>
             <input
               onChange={onChangeFunc}
               type="date"

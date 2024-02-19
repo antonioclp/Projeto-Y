@@ -1,18 +1,26 @@
 .m-register {
+  height: 99vh;
   display: flex;
   justify-content: center;
   background-color: rgb(244, 247, 255);
 }
 
 .m-register-form {
-  margin: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
+  padding: 2vw;
+  max-width: 15vw;
+  margin: 5%;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(248, 248, 255);
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 1px rgb(150, 150, 150);
+  padding: 45px;
 }
 
 .m-register-form--title {
+  margin-bottom: 10px;
 }
 
 .m-register-form--inputs {
@@ -23,5 +31,29 @@
 
   & div {
     margin: 10px;
+  }
+
+  & span {
+    font-size: 0.8vw;
+    max-width: 90%;
+  }
+
+  & input {
+    background-color: white;
+    border-style: none;
+    border-radius: 5px;
+    padding: 14px;
+    font-size: 14px;
+    box-shadow: 0.5px 0.5px 2.5px 0.5px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease-out;
+    outline: none;
+  }
+
+  & div:nth-child(7) {
+    margin-top: 2vw;
+    & span {
+      font-size: 1vw;
+      margin-right: 10px;
+    }
   }
 }
