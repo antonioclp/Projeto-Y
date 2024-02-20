@@ -51,7 +51,7 @@ export default function Login() {
     } else {
       const fetch = await response.json();
       localStorage.setItem("dXNlcg", JSON.stringify(fetch.data));
-      return navigate("home");
+      return navigate("/");
     }
   };
 

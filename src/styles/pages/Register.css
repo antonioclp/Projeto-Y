@@ -49,7 +49,7 @@
     outline: none;
   }
 
-  & div:nth-child(7) {
+  & div:nth-child(4) {
     margin-top: 2vw;
     & span {
       font-size: 1vw;
@@ -63,6 +63,7 @@
     background: rgb(247, 247, 247);
     border: 1px solid black;
     border-radius: 20px;
+    margin-top: 10px;
     padding: 1vw;
     width: 10vw;
     font-size: 1vw;

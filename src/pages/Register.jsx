@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Utils
 import getDate from "../utils/getDate";
@@ -11,6 +12,8 @@ import { postUser } from "../api/request";
 import "../styles/pages/Register.css";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const [date, setDate] = useState();
   const [userInfo, setInfo] = useState({
     name: "",
@@ -20,13 +23,24 @@ export default function Register() {
     birthday: "",
     role: "USER",
   });
+  const [isEnable, setDisable] = useState(true);
 
   const [serverStatus, setStatus] = useState(0);
-  const [errorMessages, setErrorMessages] = useState();
+  const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
     setDate(getDate);
-  }, [userInfo]);
+
+    const allFieldsFilled = Object.values(userInfo).every(
+      (value) => value !== ""
+    );
+
+    const hasErrors = Object.values(errorMessages).some(
+      (message) => message !== ""
+    );
+
+    setDisable(!allFieldsFilled || hasErrors);
+  }, [userInfo, errorMessages]);
 
   const onChangeFunc = (event) => {
     const { target } = event;
@@ -40,11 +54,6 @@ export default function Register() {
         age: Number(date.slice(0, 4)) - Number(value.slice(0, 4)),
       }));
     } else {
-      setInfo((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-
       if (value.trim().length < 2) {
         errorMessage = "Min 2 characters";
       } else {
@@ -53,7 +62,8 @@ export default function Register() {
         }
 
         if (name === "password" && !validatePassword(value)) {
-          errorMessage = "Password must contain at least one especial character";
+          errorMessage =
+            "Password must contain at least one especial character";
         }
 
         if (name === "birthday") {
@@ -64,6 +74,11 @@ export default function Register() {
             errorMessage = "Insert a valid date.";
           }
         }
+
+        setInfo((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
       }
     }
 
@@ -80,6 +95,7 @@ export default function Register() {
       return setStatus(409);
     } else {
       setStatus(200);
+      navigate("/login");
     }
   };
 
@@ -134,7 +150,7 @@ export default function Register() {
           </div>
           {errorMessages && <span>{errorMessages.birthday}</span>}
           <div className="m-register-form--button">
-            <button onClick={onClickFunc} type="button">
+            <button onClick={onClickFunc} type="button" disabled={isEnable}>
               Continue
             </button>
           </div>
