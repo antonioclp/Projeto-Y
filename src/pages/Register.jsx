@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Utils
 import getDate from "../utils/getDate";
@@ -7,7 +8,12 @@ import { validateEmail, validatePassword } from "../utils/validation";
 // Api
 import { postUser } from "../api/request";
 
+// Style
+import "../styles/pages/Register.css";
+
 export default function Register() {
+  const navigate = useNavigate();
+
   const [date, setDate] = useState();
   const [userInfo, setInfo] = useState({
     name: "",
@@ -15,15 +21,26 @@ export default function Register() {
     password: "",
     age: 0,
     birthday: "",
-    role: "USER"
+    role: "USER",
   });
+  const [isEnable, setDisable] = useState(true);
 
   const [serverStatus, setStatus] = useState(0);
-  const [errorMessages, setErrorMessages] = useState();
+  const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
     setDate(getDate);
-  }, [userInfo]);
+
+    const allFieldsFilled = Object.values(userInfo).every(
+      (value) => value !== ""
+    );
+
+    const hasErrors = Object.values(errorMessages).some(
+      (message) => message !== ""
+    );
+
+    setDisable(!allFieldsFilled || hasErrors);
+  }, [userInfo, errorMessages]);
 
   const onChangeFunc = (event) => {
     const { target } = event;
@@ -36,29 +53,32 @@ export default function Register() {
         birthday: value,
         age: Number(date.slice(0, 4)) - Number(value.slice(0, 4)),
       }));
-
     } else {
-      setInfo((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-
       if (value.trim().length < 2) {
-        errorMessage = "Mínimo de 2 caracteres";
+        errorMessage = "Min 2 characters";
       } else {
         if (name === "email" && !validateEmail(value)) {
-          errorMessage = "Email inválido";
+          errorMessage = "Invalid Email";
         }
 
         if (name === "password" && !validatePassword(value)) {
-          errorMessage = "A senha deve conter pelo menos um caractere especial";
+          errorMessage =
+            "Password must contain at least one especial character";
         }
 
         if (name === "birthday") {
-          if (Number(value.slice(0, 4)) < 1925 || Number(value.slice(0, 4)) > Number(date.slice(0, 4))) {
-            errorMessage = "Insira uma data válida.";
+          if (
+            Number(value.slice(0, 4)) < 1925 ||
+            Number(value.slice(0, 4)) > Number(date.slice(0, 4))
+          ) {
+            errorMessage = "Insert a valid date.";
           }
         }
+
+        setInfo((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
       }
     }
 
@@ -75,47 +95,65 @@ export default function Register() {
       return setStatus(409);
     } else {
       setStatus(200);
+      navigate("/login");
     }
   };
 
   return (
-    <main>
-      <form>
-        <div>
-          <label htmlFor="inputName">Username</label>
-          <input onChange={onChangeFunc} type="text" id="inputName" name="name" />
-          {
-            errorMessages && <span>{errorMessages.name}</span>
-          }
+    <main className="m-register">
+      <form className="m-register-form">
+        <div className="m-register-form--title">
+          <h2>Register</h2>
         </div>
-        <div>
-          <label htmlFor="inputEmail">Email</label>
-          <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
-          {
-            errorMessages && <span>{errorMessages.email}</span>
-          }
-        </div>
-        <div>
-          {
-            serverStatus === 409 ? <span>Email já existe.</span> : null
-          }
-        </div>
-        <div>
-          <label htmlFor="inputPassword">Password</label>
-          <input onChange={onChangeFunc} type="password" id="inputPassword" name="password" />
-          {
-            errorMessages && <span>{errorMessages.password}</span>
-          }
-        </div>
-        <div>
-          <label htmlFor="inputDate">Birthday</label>
-          <input onChange={onChangeFunc} type="date" id="inputDate" min="1925-01-01" max={date} name="birthday" />
-          {
-            errorMessages && <span>{errorMessages.birthday}</span>
-          }
-        </div>
-        <div>
-          <button onClick={onClickFunc} type="button" >Confirm</button>
+        <div className="m-register-form--inputs">
+          <div>
+            <input
+              onChange={onChangeFunc}
+              type="text"
+              id="inputName"
+              name="name"
+              placeholder="Username"
+            />
+          </div>
+          {errorMessages && <span>{errorMessages.name}</span>}
+          <div>
+            <input
+              onChange={onChangeFunc}
+              type="text"
+              id="inputEmail"
+              name="email"
+              placeholder="Email"
+            />
+          </div>
+          {errorMessages && <span>{errorMessages.email}</span>}
+          {serverStatus === 409 ? <span>Email already exists.</span> : null}
+          <div>
+            <input
+              onChange={onChangeFunc}
+              type="password"
+              id="inputPassword"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          {errorMessages && <span>{errorMessages.password}</span>}
+          <div>
+            <span>Birthday</span>
+            <input
+              onChange={onChangeFunc}
+              type="date"
+              id="inputDate"
+              min="1925-01-01"
+              max={date}
+              name="birthday"
+            />
+          </div>
+          {errorMessages && <span>{errorMessages.birthday}</span>}
+          <div className="m-register-form--button">
+            <button onClick={onClickFunc} type="button" disabled={isEnable}>
+              Continue
+            </button>
+          </div>
         </div>
       </form>
     </main>

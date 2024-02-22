@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { getUserByEmail } from "../api/request";
+import { getUserByUsername } from "../api/request";
+import { useNavigate } from "react-router-dom";
+
+// Style
+import "../styles/pages/Login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
-    email: "",
-    password: ""
+    username: "",
+    password: "",
   });
 
   const [errorMessages, setErrorMessages] = useState({
-    email: "",
-    password: ""
+    message: "",
   });
 
-  useEffect(() => {
-  }, [user]);
+  useEffect(() => {}, [user]);
 
   const onChangeFunc = (event) => {
     const { target } = event;
@@ -21,57 +25,65 @@ export default function Login() {
 
     setUser((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     setErrorMessages((prev) => ({
       ...prev,
-      [name]: ""
+      [name]: "",
     }));
   };
 
-  const onClickFunc = async () => {
-    const response = await getUserByEmail(user.email, user.password);
+  const onClickFunc = async (event) => {
+    event.preventDefault();
+
+    const response = await getUserByUsername(user.username, user.password);
 
     if (response.status === 404) {
+      const fetch = await response.json();
       setErrorMessages((prev) => ({
         ...prev,
-        email: "Email não existente"
+        message: fetch.message,
       }));
-
-    } else if (response.status === 409) {
-      setErrorMessages((prev) => ({
-        ...prev,
-        password: "Senha incorreta"
-      }));
-
     } else {
       const fetch = await response.json();
-      console.log(fetch);
       localStorage.setItem("dXNlcg", JSON.stringify(fetch.data));
+      return navigate("/");
     }
   };
 
   return (
-    <main>
-      <form>
-        <div>
-          <label htmlFor="inputEmail">Email</label>
-          <input onChange={onChangeFunc} type="text" id="inputEmail" name="email" />
-          {
-            errorMessages.email && <span>{errorMessages.email}</span>
-          }
+    <main className="m-login">
+      <form className="m-login--form">
+        <div className="m-login--logo">
+          <img src="src/imgs/y-logo.png" alt="y" />
         </div>
         <div>
-          <label htmlFor="inputPassword">Password</label>
-          <input onChange={onChangeFunc} type="password" id="inputPassword" name="password" />
-          {
-            errorMessages.password && <span>{errorMessages.password}</span>
-          }
+          <input
+            onChange={onChangeFunc}
+            type="text"
+            id="inputUsername"
+            name="username"
+            placeholder="Username"
+          />
         </div>
         <div>
-          <a onClick={onClickFunc} >Login</a>
-          <a href="/register" >Register</a>
+          <input
+            onChange={onChangeFunc}
+            type="password"
+            id="inputPassword"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="login-form--navegation">
+          {errorMessages.message && <span>{errorMessages.message}</span>}
+          <span>
+            <button onClick={onClickFunc}>Login</button>
+          </span>
+          <span>
+            {"Don't have an account? "} <a href="/register">Register</a>
+          </span>
         </div>
       </form>
     </main>

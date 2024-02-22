@@ -1,4 +1,5 @@
 import getDate from "../utils/getDate";
+import moment from "moment";
 
 export const postUser = async (userInfo) => {
   const response = await fetch("http://localhost:8080/register", {
@@ -12,7 +13,7 @@ export const postUser = async (userInfo) => {
       email: userInfo.email,
       password: userInfo.password,
       createdDate: getDate(),
-      createdTime: new Date().toLocaleTimeString().slice(0, -6),
+      createdTime: moment().format("HH:mm:ss"),
       role: userInfo.role
     }),
   });
@@ -25,14 +26,18 @@ export const postUser = async (userInfo) => {
   return data;
 };
 
-export const getUserByEmail = async (userEmail, userPassword) => {
-  const url = `http://localhost:8080/users/email?email=${encodeURIComponent(userEmail)}&password=${encodeURIComponent(userPassword)}`;
+export const getUserByUsername = async (username, password) => {
+  const url = `http://localhost:8080/login`;
 
   const response = await fetch(url, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
   });
 
   return response;
