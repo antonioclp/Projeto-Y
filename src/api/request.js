@@ -26,14 +26,18 @@ export const postUser = async (userInfo) => {
   return data;
 };
 
-export const getUserByEmail = async (userEmail, userPassword) => {
-  const url = `http://localhost:8080/users/email?email=${encodeURIComponent(userEmail)}&password=${encodeURIComponent(userPassword)}`;
+export const getUserByUsername = async (username, password) => {
+  const url = `http://localhost:8080/login`;
 
   const response = await fetch(url, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
   });
 
   return response;
