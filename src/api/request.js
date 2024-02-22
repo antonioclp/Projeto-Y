@@ -14,7 +14,7 @@ export const postUser = async (userInfo) => {
       password: userInfo.password,
       createdDate: getDate(),
       createdTime: moment().format("HH:mm:ss"),
-      role: userInfo.role
+      role: userInfo.role,
     }),
   });
 
@@ -26,7 +26,7 @@ export const postUser = async (userInfo) => {
   return data;
 };
 
-export const getUserByUsername = async (username, password) => {
+export const getTokenByCredentials = async (username, password) => {
   const url = `http://localhost:8080/login`;
 
   const response = await fetch(url, {
@@ -41,4 +41,19 @@ export const getUserByUsername = async (username, password) => {
   });
 
   return response;
+};
+
+export const getUserByUsername = async (username, token) => {
+  const url = `http://localhost:8080/person/${username}`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
 };
