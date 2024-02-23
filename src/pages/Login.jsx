@@ -87,7 +87,7 @@ export default function Login() {
             <button onClick={onClickFunc}>Login</button>
           </span>
           <span>
-            {"Don't have an account? "} <a href="/register">Register</a>
+            {"Don't have an account? "} <a href="/register">Sing up</a>
           </span>
         </div>
       </form>
