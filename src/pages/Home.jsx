@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getUserByUsername } from "../api/request";
 import { useNavigate } from "react-router-dom";
+
+// Components
+import { IsLogged } from "../components";
+
+// Api
+// import { getUserByUsername } from "../api/request";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const [information, setInformation] = useState({});
+  // const [information, setInformation] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
@@ -30,32 +35,16 @@ export default function Home() {
     const { name } = target;
 
     switch (name) {
-      case "login":
-        navigate("/login");
-        break;
-      case "sing up":
-        navigate("/register");
-        break;
-      default:
-        break;
+    case "login":
+      navigate("/login");
+      break;
+    case "sing up":
+      navigate("/register");
+      break;
+    default:
+      break;
     }
   };
 
-  return (
-    <main className="m-home">
-      {!isLogged && (
-        <div className="m-home--isLogged">
-          <h4>Log in to access Y</h4>
-          <div className="m-home--isLogged-buttons">
-            <button type="button" name="login" onClick={onClickFunction}>
-              Login
-            </button>
-            <button type="button" name="sing up" onClick={onClickFunction}>
-              Sing up
-            </button>
-          </div>
-        </div>
-      )}
-    </main>
-  );
+  return <main className="m-home">{!isLogged && <IsLogged onClickFunction={onClickFunction}/>}</main>;
 }
