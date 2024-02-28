@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import { IsLogged } from "../components";
+import { IsLogged, CHeader } from "../components";
 
 // Api
 // import { getUserByUsername } from "../api/request";
 
 export default function Home() {
-
   // const [information, setInformation] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 
@@ -28,5 +27,10 @@ export default function Home() {
     }
   }, []);
 
-  return <main className="m-home">{!isLogged && <IsLogged />}</main>;
+  return (
+    <main className="m-home">
+      <CHeader />
+      {!isLogged && <IsLogged />}
+    </main>
+  );
 }
