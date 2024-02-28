@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // Components
 import { IsLogged } from "../components";
@@ -8,7 +7,6 @@ import { IsLogged } from "../components";
 // import { getUserByUsername } from "../api/request";
 
 export default function Home() {
-  const navigate = useNavigate();
 
   // const [information, setInformation] = useState({});
   const [isLogged, setIsLogged] = useState(false);
@@ -30,21 +28,5 @@ export default function Home() {
     }
   }, []);
 
-  const onClickFunction = (event) => {
-    const { target } = event;
-    const { name } = target;
-
-    switch (name) {
-    case "login":
-      navigate("/login");
-      break;
-    case "sing up":
-      navigate("/register");
-      break;
-    default:
-      break;
-    }
-  };
-
-  return <main className="m-home">{!isLogged && <IsLogged onClickFunction={onClickFunction}/>}</main>;
+  return <main className="m-home">{!isLogged && <IsLogged />}</main>;
 }

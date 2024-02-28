@@ -1,22 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-export default function IsLogged({ onClickFunction }) {
+// Style
+import "../styles/components/isLogged.css";
+
+export default function IsLogged() {
   return (
     <div className="m-home--isLogged">
-      <h4>Log in to access Y</h4>
-      <div className="m-home--isLogged-buttons">
-        <button type="button" name="login" onClick={onClickFunction}>
-          Login
-        </button>
-        <button type="button" name="sing up" onClick={onClickFunction}>
-          Sing up
-        </button>
+      <h2>Log in to access Y</h2>
+      <div className="m-home--isLogged-nav">
+        <span>
+          <a href="/login">Login</a>
+        </span>
+        <span>Or</span>
+        <span>
+          <a href="/register">Sing up</a>
+        </span>
       </div>
     </div>
   );
 }
-
-IsLogged.propTypes = {
-  onClickFunction: PropTypes.func
-};
