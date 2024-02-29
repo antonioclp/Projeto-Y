@@ -32,8 +32,13 @@ export default function Home() {
 
   return (
     <main className={"m-home"}>
-      <div className={`${isLogged ? "" : "with-blur"}`} >
+      <div className={`${isLogged ? "" : "with-blur"}`}>
         <CHeader />
+      </div>
+      <div className="m-home--center">
+        <aside className="center__aside-general">aside-general</aside>
+        <div className="center__post-center">post-center</div>
+        <aside className="center__aside-recom">aside-recommendations</aside>
       </div>
       {!isLogged && <IsLogged />}
     </main>
