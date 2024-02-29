@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import { IsLogged, CHeader } from "../components";
+import { IsLogged, CHeader, AsideLeft } from "../components";
 
 // Api
 // import { getUserByUsername } from "../api/request";
 
 // Style
 import "../styles/pages/Home.css";
-import AsideGeneral from "../components/AsideGeneral";
 
 export default function Home() {
   // const [information, setInformation] = useState({});
@@ -37,9 +36,9 @@ export default function Home() {
         <CHeader />
       </div>
       <div className="m-home--center">
-        <AsideGeneral />
+        <AsideLeft />
         <div className="center__post-center">post-center</div>
-        <aside className="center__aside-recom">aside-recommendations</aside>
+        <aside className="center__aside-right">aside-recommendations</aside>
       </div>
       {!isLogged && <IsLogged />}
     </main>
