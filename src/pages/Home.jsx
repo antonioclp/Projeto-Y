@@ -8,6 +8,7 @@ import { IsLogged, CHeader } from "../components";
 
 // Style
 import "../styles/pages/Home.css";
+import AsideGeneral from "../components/AsideGeneral";
 
 export default function Home() {
   // const [information, setInformation] = useState({});
@@ -36,7 +37,7 @@ export default function Home() {
         <CHeader />
       </div>
       <div className="m-home--center">
-        <aside className="center__aside-general">aside-general</aside>
+        <AsideGeneral />
         <div className="center__post-center">post-center</div>
         <aside className="center__aside-recom">aside-recommendations</aside>
       </div>
