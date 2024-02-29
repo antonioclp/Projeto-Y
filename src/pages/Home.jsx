@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import { IsLogged, CHeader, AsideLeft } from "../components";
+import { 
+  IsLogged, CHeader, 
+  AsideLeft, AsideRight 
+} from "../components";
 
 // Api
 // import { getUserByUsername } from "../api/request";
@@ -38,7 +41,7 @@ export default function Home() {
       <div className="m-home--center">
         <AsideLeft />
         <div className="center__post-center">post-center</div>
-        <aside className="center__aside-right">aside-recommendations</aside>
+        <AsideRight />
       </div>
       {!isLogged && <IsLogged />}
     </main>
