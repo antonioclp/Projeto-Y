@@ -1,7 +1,7 @@
 .center__aside-right {
   display: flex;
   flex-direction: column;
-  margin-right: 5%;
+  margin-right: 3%;
   padding-left: 65px;
   border-left: 1px solid black;
 }
