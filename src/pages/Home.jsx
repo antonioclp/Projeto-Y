@@ -35,7 +35,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={"m-home"}>
+    <main className={`m-home ${isLogged ? "" : "with-blur"}`}>
       <div className={`${isLogged ? "" : "with-blur"}`}>
         <CHeader />
       </div>

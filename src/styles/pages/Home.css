@@ -5,5 +5,4 @@
 .m-home--center {
   display: flex;
   justify-content: space-between;
-  filter: blur(2px);
 }
