@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 // Components
 import { 
   IsLogged, CHeader, 
-  AsideLeft, AsideRight 
+  AsideLeft, AsideRight, 
+  PostCenter
 } from "../components";
 
 // Api
@@ -40,7 +41,7 @@ export default function Home() {
       </div>
       <div className="m-home--center">
         <AsideLeft />
-        <div className="center__post-center">post-center</div>
+        <PostCenter />
         <AsideRight />
       </div>
       {!isLogged && <IsLogged />}

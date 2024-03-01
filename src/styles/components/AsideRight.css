@@ -1,5 +1,4 @@
 .center__aside-right {
-  position: relative;
   display: flex;
   flex-direction: column;
   margin-right: 5%;
@@ -53,6 +52,7 @@
 
   & img {
     margin-right: 10px;
+    border-radius: 50%;
     width: 3.5vw;
   }
 

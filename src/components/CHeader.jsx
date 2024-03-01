@@ -7,7 +7,7 @@ export default function CHeader() {
   return (
     <header className="home-hdr">
       <div className="hdr--search">
-        <img src="/src/imgs/y-logo-noback.png" />
+        <img src="/src/imgs/y-logo-white.png" />
         <input type="text" placeholder="Search in Y" />
         <button>
           <img src="/src/imgs/lupe.png" />
