@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import { IsLogged, CHeader } from "../components";
+import { 
+  IsLogged, CHeader, 
+  AsideLeft, AsideRight, 
+  PostCenter
+} from "../components";
 
 // Api
 // import { getUserByUsername } from "../api/request";
@@ -31,9 +35,14 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={"m-home"}>
-      <div className={`${isLogged ? "" : "with-blur"}`} >
+    <main className={`m-home ${isLogged ? "" : "with-blur"}`}>
+      <div className={`${isLogged ? "" : "with-blur"}`}>
         <CHeader />
+      </div>
+      <div className="m-home--center">
+        <AsideLeft />
+        <PostCenter />
+        <AsideRight />
       </div>
       {!isLogged && <IsLogged />}
     </main>

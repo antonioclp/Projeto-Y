@@ -1,3 +1,8 @@
 .with-blur {
-  filter: blur(1.5px);
+  filter: blur(2px);
+}
+
+.m-home--center {
+  display: flex;
+  justify-content: space-between;
 }

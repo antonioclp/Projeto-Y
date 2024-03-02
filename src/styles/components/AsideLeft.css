@@ -1,0 +1,42 @@
+.center__aside-left { 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 22%;
+  margin-left: 4.1%;
+  padding-right: 10%;
+  border-right: 1px solid black;
+}
+
+.aside-left--div {
+  margin-top: 20%;
+}
+
+.div__options {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 20%;
+
+  & img {
+    width: 2vw;
+    max-height: 2vw;
+    margin-left: 18%;
+  }
+
+  & span {
+    font-size: 1.2vw;
+    text-wrap: nowrap;
+    margin-left: 20%;
+
+    & a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    & a:hover {
+      text-decoration: underline;
+    }
+  }
+}
