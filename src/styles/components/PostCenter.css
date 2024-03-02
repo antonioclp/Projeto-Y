@@ -52,11 +52,12 @@
     font-size: 18px;
     color: #F8F8FF;
     font-weight: bold;
-    transition: box-shadow ;
+    transition: opacity 0.2s ease-out;
   }
 
   & button:hover {
     cursor: pointer;
+    opacity: 0.9;
   }
 }
 
