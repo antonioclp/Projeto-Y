@@ -76,8 +76,8 @@ export default function PostCenter() {
             name="post-input"
             placeholder="What are you thinking?"
           />
-          {uploaded && <span>Sucess!</span>}
           <div className="submit__options">
+            {uploaded && <span>Sucess!</span>}
             <button
               onClick={onClickFunction}
               type="button"
@@ -92,7 +92,6 @@ export default function PostCenter() {
       <div className="post-others">
         {posts &&
           posts
-            // Ordenando os posts pelo campo combinado createdDateTime de forma decrescente (do mais recente para o mais antigo)
             .sort((a, b) => {
               const dateTimeA = new Date(`${a.createdDate} ${a.createdTime}`);
               const dateTimeB = new Date(`${b.createdDate} ${b.createdTime}`);

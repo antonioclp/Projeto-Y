@@ -38,7 +38,7 @@ export default function PostCard({
         <span>
           {minutesElapsed <= 60
             ? `${minutesElapsed} minutes`
-            : `${minutesElapsed / 60} hours`}
+            : `${Math.floor(minutesElapsed / 60)} hours`}
         </span>
       </div>
     </article>
