@@ -35,11 +35,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={`m-home ${isLogged ? "" : "with-blur"}`}>
+    <main className="m-home">
       <div className={`${isLogged ? "" : "with-blur"}`}>
         <CHeader />
       </div>
-      <div className="m-home--center">
+      <div className={`m-home--center ${isLogged ? "" : "with-blur"}`}>
         <AsideLeft />
         <PostCenter />
         <AsideRight />
