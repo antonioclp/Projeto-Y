@@ -58,7 +58,7 @@ export const getUserByUsername = async (username, token) => {
   return data;
 };
 
-export const uploadPost = async (username, token, message) =>{
+export const uploadPost = async (username, token, message) => {
   const url = `http://localhost:8080/posts/${username}/upload`;
 
   const response = await fetch(url, {
@@ -69,8 +69,27 @@ export const uploadPost = async (username, token, message) =>{
     },
     body: JSON.stringify({
       message,
-      createdDate: getDate()
+      createdDate: getDate(),
+      createdTime: moment().format("HH:mm:ss"),
     })
+  });
+
+  const data = await response.json();
+  return {
+    status: 201,
+    response: data
+  };
+};
+
+export const getAllPosts = async (token) => {
+  const url = "http://localhost:8080/posts";
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
   });
 
   const data = await response.json();

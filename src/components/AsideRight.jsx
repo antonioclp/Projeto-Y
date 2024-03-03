@@ -9,9 +9,9 @@ export default function AsideRight() {
       <article className="aside-right--latest">
         <h3>Latest</h3>
         <div className="latest__top3">
-          <span>Elon Musk 110k</span>
-          <span>League of Legends 50k</span>
-          <span>Lana Del Rey 50k</span>
+          <span>Top 1 110k</span>
+          <span>Top 2 50k</span>
+          <span>Top 3 50k</span>
         </div>
       </article>
       <div className="aside-right--div__recom">

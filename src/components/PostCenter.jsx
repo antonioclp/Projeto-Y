@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { PostCard } from "./index";
 
 // Api
-import { uploadPost } from "../api/request";
+import { getAllPosts, uploadPost } from "../api/request";
 
 // Style
 import "../styles/components/PostCenter.css";
@@ -15,15 +15,20 @@ export default function PostCenter() {
   const [message, setMessage] = useState("");
   const [isDisable, setDisable] = useState(true);
   const [uploaded, isUploaded] = useState(false);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    /* const fetchData = async () => {
-      const { token, username } = credentials;
-      const infos = await getUserByUsername(username, token);
-      
-      setInformation(infos.data);
-     };
-     */
+    const fetchData = async () => {
+      const { token } = credentials;
+      const posts = await getAllPosts(token);
+
+      const { response } = posts;
+      const { data } = response;
+
+      setPosts(data);
+    };
+
+    fetchData();
   }, []);
 
   const onChangeFunction = (event) => {
@@ -32,7 +37,7 @@ export default function PostCenter() {
 
     switch (name) {
     case "post-input":
-      if (value.length >= 2) {
+      if (value.length >= 2 && value.length <= 150) {
         setMessage(value);
         setDisable(false);
       }
@@ -49,10 +54,10 @@ export default function PostCenter() {
 
     if (data.status === 201) {
       isUploaded(true);
+      console.log(data);
       setTimeout(() => {
         isUploaded(false);
       }, 3000);
-
     } else {
       console.log(data);
     }
@@ -85,7 +90,23 @@ export default function PostCenter() {
         </div>
       </article>
       <div className="post-others">
-        <PostCard />
+        {posts &&
+          posts
+            // Ordenando os posts pelo campo combinado createdDateTime de forma decrescente (do mais recente para o mais antigo)
+            .sort((a, b) => {
+              const dateTimeA = new Date(`${a.createdDate} ${a.createdTime}`);
+              const dateTimeB = new Date(`${b.createdDate} ${b.createdTime}`);
+              return dateTimeB - dateTimeA;
+            })
+            .map((p) => (
+              <PostCard
+                key={p.id}
+                username={p.person.username}
+                message={p.message}
+                createdDate={p.createdDate}
+                createdTime={p.createdTime}
+              />
+            ))}
       </div>
     </div>
   );
