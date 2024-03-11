@@ -4,6 +4,8 @@ import React from "react";
 import "../styles/components/AsideLeft.css";
 
 export default function AsideLeft() {
+  const credentials = JSON.parse(localStorage.getItem("dXNlcg"));
+
   return (
     <aside className="center__aside-left">
       <div className="aside-left--div">
@@ -28,7 +30,7 @@ export default function AsideLeft() {
         <div className="div__options">
           <img src="/src/imgs/user-default.png" />
           <span>
-            <a href="/y/trendings">Profile</a>
+            <a href={`/y/${credentials.username}`}>Profile</a>
           </span>
         </div>
         <div className="div__options">
