@@ -2,17 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function UserCenter({ content }) {
-  const {
-    data: { username, email, createdDate },
-  } = content;
 
   return (
     <div className="d-user">
       <article className="d-user--artc">
         <div className="artc__info">
-          <span>{username}</span>
-          <span>{email}</span>
-          <span>{createdDate}</span>
+          <span>{content.data.username}</span>
+          <span>{content.data.email}</span>
+          <span>{content.data.createdDate}</span>
         </div>
       </article>
       <div></div>

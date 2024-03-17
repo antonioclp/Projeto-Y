@@ -10,15 +10,16 @@ import { getAllPosts, uploadPost } from "../api/request";
 import "../styles/components/PostCenter.css";
 
 export default function PostCenter() {
-  const credentials = JSON.parse(localStorage.getItem("dXNlcg"));
-
+  const [userCredentials, setUserCredentials] = useState();
   const [message, setMessage] = useState("");
   const [isDisable, setDisable] = useState(true);
   const [uploaded, isUploaded] = useState(false);
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
+      const credentials = JSON.parse(localStorage.getItem("dXNlcg"));
+      setUserCredentials(credentials);
       const { token } = credentials;
       const posts = await getAllPosts(token);
 
@@ -48,13 +49,12 @@ export default function PostCenter() {
   };
 
   const onClickFunction = async () => {
-    const { username, token } = credentials;
+    const { username, token } = userCredentials;
 
     const data = await uploadPost(username, token, message);
 
     if (data.status === 201) {
       isUploaded(true);
-      console.log(data);
       setTimeout(() => {
         isUploaded(false);
       }, 3000);
