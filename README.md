@@ -26,7 +26,7 @@ Front-end responsável de realizar requisições dos dados do [Back-end](https:/
 Instalação do projeto na máquina local para visualização:
 
 ```bash
-  git clone https://github.com/antonioclp/Y-Back-end.git
+  git clone git@github.com:antonioclp/Projeto-Y.git
   cd projeto-Y
   npm install
 ```
