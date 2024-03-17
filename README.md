@@ -1,8 +1,59 @@
-# React + Vite
+ 
+# Projeto Y
+####  ⚠️ Projeto em desenvolvimento.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Rede social inspirada no X (Twitter) e Facebook.
 
-Currently, two official plugins are available:
+Front-end responsável de realizar requisições dos dados do [Back-end](https://github.com/antonioclp/Y-Back-end) e renderizar uma interface interativa para o usuário.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+
+
+## Funcionalidades
+
+- Login e registro;
+- Realização de postagens e visualização de postagens recentes;
+- Seção de profile e visualização de posts do usuário;
+- Seção de configurações e alteração dos dados cadastrados;
+
+
+
+
+
+## Instalação
+
+Instalação do projeto na máquina local para visualização:
+
+```bash
+  git clone https://github.com/antonioclp/Y-Back-end.git
+  cd projeto-Y
+  npm install
+```
+
+Inicialização do projeto:
+
+```bash
+  npm run dev
+```
+## Dependências
+
+```json
+  "dependencies": {
+    "moment": "^2.30.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.0.8"
+  }
+```
