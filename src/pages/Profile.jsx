@@ -10,6 +10,10 @@ import "../styles/pages/Profile.css";
 // Api
 import { getUserByUsername } from "../api/request";
 
+/**
+ * Em desenvolvimento.
+ * @returns 
+ */
 export default function Profile() {
   const navigate = useNavigate();
 

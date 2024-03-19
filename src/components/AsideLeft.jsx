@@ -30,7 +30,7 @@ export default function AsideLeft() {
         <div className="div__options">
           <img src="/src/imgs/user-default.png" />
           <span>
-            <a href={`/y/${credentials.username}`}>Profile</a>
+            <a href={`/y/${credentials ? credentials.username : " "}`}>Profile</a>
           </span>
         </div>
         <div className="div__options">
