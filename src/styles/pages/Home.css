@@ -1,5 +1,6 @@
 .with-blur {
   filter: blur(2px);
+  pointer-events: none;
 }
 
 .m-home--center {

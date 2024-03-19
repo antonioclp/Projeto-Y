@@ -29,17 +29,21 @@ export default function Register() {
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
-    setDate(getDate);
+    try {
+      setDate(getDate);
 
-    const allFieldsFilled = Object.values(userInfo).every(
-      (value) => value !== ""
-    );
+      const allFieldsFilled = Object.values(userInfo).every(
+        (value) => value !== ""
+      );
 
-    const hasErrors = Object.values(errorMessages).some(
-      (message) => message !== ""
-    );
+      const hasErrors = Object.values(errorMessages).some(
+        (message) => message !== ""
+      );
 
-    setDisable(!allFieldsFilled || hasErrors);
+      setDisable(!allFieldsFilled || hasErrors);
+    } catch (error) {
+      console.error(error);
+    }
   }, [userInfo, errorMessages]);
 
   const onChangeFunc = (event) => {

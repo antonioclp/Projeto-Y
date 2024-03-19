@@ -10,25 +10,34 @@ import { getAllPosts, uploadPost } from "../api/request";
 import "../styles/components/PostCenter.css";
 
 export default function PostCenter() {
-  const credentials = JSON.parse(localStorage.getItem("dXNlcg"));
-
+  const [userCredentials, setUserCredentials] = useState();
   const [message, setMessage] = useState("");
   const [isDisable, setDisable] = useState(true);
   const [uploaded, isUploaded] = useState(false);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { token } = credentials;
-      const posts = await getAllPosts(token);
+    try {
+      const fetchData = async () => {
+        const credentials = JSON.parse(localStorage.getItem("dXNlcg"));
+        if (credentials) {
+          setUserCredentials(credentials);
+          const { token } = credentials;
+          const posts = await getAllPosts(token);
 
-      const { response } = posts;
-      const { data } = response;
+          const { response } = posts;
+          const { data } = response;
 
-      setPosts(data);
-    };
+          return setPosts(data);
+        }
 
-    fetchData();
+        console.log("If you see this message, is because no credentials as been provided or a internal error.");
+      };
+
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   const onChangeFunction = (event) => {
@@ -48,13 +57,12 @@ export default function PostCenter() {
   };
 
   const onClickFunction = async () => {
-    const { username, token } = credentials;
+    const { username, token } = userCredentials;
 
     const data = await uploadPost(username, token, message);
 
     if (data.status === 201) {
       isUploaded(true);
-      console.log(data);
       setTimeout(() => {
         isUploaded(false);
       }, 3000);

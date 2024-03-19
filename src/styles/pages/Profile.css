@@ -1,0 +1,9 @@
+m-profile {
+  display: flex;
+  justify-content: space-around;
+}
+
+.m-profile--center {
+  display: flex;
+  justify-content: space-around;
+}
