@@ -9,12 +9,12 @@ export const postUser = async (userInfo) => {
     },
     body: JSON.stringify({
       username: userInfo.name,
-      age: userInfo.age,
       email: userInfo.email,
       password: userInfo.password,
+      age: userInfo.age,
       createdDate: getDate(),
       createdTime: moment().format("HH:mm:ss"),
-      role: userInfo.role
+      role: userInfo.role,
     }),
   });
 
@@ -26,8 +26,8 @@ export const postUser = async (userInfo) => {
   return data;
 };
 
-export const getUserByUsername = async (username, password) => {
-  const url = `http://localhost:8080/login`;
+export const getTokenByCredentials = async (username, password) => {
+  const url = "http://localhost:8080/login";
 
   const response = await fetch(url, {
     method: "POST",
@@ -41,4 +41,60 @@ export const getUserByUsername = async (username, password) => {
   });
 
   return response;
+};
+
+export const getUserByUsername = async (username, token) => {
+  const url = `http://localhost:8080/person/${username}`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
+};
+
+export const uploadPost = async (username, token, message) => {
+  const url = `http://localhost:8080/posts/${username}/upload`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      message,
+      createdDate: getDate(),
+      createdTime: moment().format("HH:mm:ss"),
+    })
+  });
+
+  const data = await response.json();
+  return {
+    status: 201,
+    response: data
+  };
+};
+
+export const getAllPosts = async (token) => {
+  const url = "http://localhost:8080/posts";
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
+  });
+
+  const data = await response.json();
+  return {
+    status: 201,
+    response: data
+  };
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUserByUsername } from "../api/request";
+import { getTokenByCredentials } from "../api/request";
 import { useNavigate } from "react-router-dom";
 
 // Style
@@ -17,7 +17,7 @@ export default function Login() {
     message: "",
   });
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {}, [user, errorMessages]);
 
   const onChangeFunc = (event) => {
     const { target } = event;
@@ -37,7 +37,7 @@ export default function Login() {
   const onClickFunc = async (event) => {
     event.preventDefault();
 
-    const response = await getUserByUsername(user.username, user.password);
+    const response = await getTokenByCredentials(user.username, user.password);
 
     if (response.status === 404) {
       const fetch = await response.json();
@@ -47,7 +47,12 @@ export default function Login() {
       }));
     } else {
       const fetch = await response.json();
-      localStorage.setItem("dXNlcg", JSON.stringify(fetch.data));
+      const credentials = {
+        token: fetch.data,
+        username: user.username,
+      };
+
+      localStorage.setItem("dXNlcg", JSON.stringify(credentials));
       return navigate("/");
     }
   };
@@ -82,7 +87,9 @@ export default function Login() {
             <button onClick={onClickFunc}>Login</button>
           </span>
           <span>
-            {"Don't have an account? "} <a href="/register">Register</a>
+            {"Don't have an account? "}
+            <br />
+            <a href="/register">Sing up</a>
           </span>
         </div>
       </form>
